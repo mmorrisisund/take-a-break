@@ -6,7 +6,7 @@ import { Break, Breaks, Home, Settings, SignIn, SignUp } from '../../pages'
 export const Layout = () => (
   <div className='flex flex-col min-h-screen bg-blue-500'>
     <Header />
-    <div className='flex-grow'>
+    <main className='flex-grow'>
 
     <Routes>
       <Route path='/' element={<Home />} />
@@ -20,6 +20,6 @@ export const Layout = () => (
       <Route path='/breaks' element={<Breaks />} />
       <Route path='/settings' element={<Settings />} />
     </Routes>
-    </div>
+    </main>
   </div>
 )
