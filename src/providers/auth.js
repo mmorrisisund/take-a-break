@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     !!user
       ? localStorage.setItem('user', JSON.stringify(user))
-      : localStorage.removeItem('item')
+      : localStorage.removeItem('user')
   }, [user])
 
   const signUp = async (email) => {
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
   const signOut = () => setUser(null)
-  const isSignedIn = () => Boolean(localStorage.getItem('user'))
+  const isSignedIn = () => Boolean(user)
 
   return (
     <AuthContext.Provider
