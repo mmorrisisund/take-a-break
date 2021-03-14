@@ -16,8 +16,8 @@ const initialUser = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-  const [userStore, setUserStore] = useState(createStore)
-  const [user, setUser] = useState()
+  const [userStore] = useState(createStore)
+  const [user, setUser] = useState(initialUser)
   const defaultSettings = {
     periodLength: 2,
     hoursPerPeriod: 4,
@@ -43,6 +43,9 @@ export const AuthProvider = ({ children }) => {
       setUser(newUser)
       return newUser
     } catch (error) {
+      if (error.message === 'A user with this email already exists') {
+        throw error
+      }
       throw new Error('Unknown error creating user')
     }
   }
@@ -57,6 +60,9 @@ export const AuthProvider = ({ children }) => {
       setUser(user)
       return user
     } catch (error) {
+      if (error.message === 'A user with this email was not found.') {
+        throw error
+      }
       throw new Error('An unknown error occured.')
     }
   }
